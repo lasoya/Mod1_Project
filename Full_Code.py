@@ -7,6 +7,7 @@ import requests
 reviews = []
 titles = []
 num_reviews = []
+all_data = []
 
 def movie_info(year):
     url = 'https://www.rottentomatoes.com/top/bestofrt/?year=' + str(year)
@@ -49,3 +50,53 @@ df['Movie Title'] = df['Movie Title'].map(lambda x: x[:-7])
 df['Number of RT Reviews'] = df['Number of RT Reviews'].astype(int)
 
 total_reviews_by_year = df.groupby('Year').sum()['Number of RT Reviews']
+
+#to scrape the individual page of each movie extracted from above for the relevant information
+def movie_info(movie):    
+    url = 'https://www.rottentomatoes.com/m/' + movie.replace(' ', '_')
+    r = requests.get(url)
+    c = r.content
+    soup = BeautifulSoup(c, 'html.parser')
+    director = []
+    writer = []
+    movies_info = {}
+    #To get directors, writers, box office, movie duration, and when it was released in theaters
+    info = soup.find_all('div', class_='meta-value')
+    
+    try:
+        for directors in info[2].find_all('a'):
+            director.append(directors.text)
+
+        movies_info['Director'] = director
+
+        for writers in info[3].find_all('a'):
+            writer.append(writers.text)
+
+        movies_info['Writers'] = writer
+
+        movies_info['Release Date'] = info[4].time.string
+
+        movies_info['Box Office Info'] = info[6].text
+
+        #to get actor information
+        actor_info = soup.find_all('section', id='movie-cast')
+
+        all_actors = []
+        for name in actor_info[0].find_all('span'):
+            all_actors.append(name.string)
+
+        actresses = []
+        for names in all_actors[::2]:
+            actresses.append(names)
+            movies_info['Actors'] = actresses
+        return movies_info   
+        
+        with open("All_Data.json", 'w') as f:
+                f.write(str(response.json()))
+        
+    except:
+        pass
+
+#to add all of the information from the movie_info function into a list of dictionaries
+for all_movies in movies_search:
+    all_data.append(movie_info(all_movies))
