@@ -66,7 +66,8 @@ def movie_info(movie):
     try:
         for directors in info[2].find_all('a'):
             director.append(directors.text)
-
+        
+        movies_info['Movie Title'] = movie
         movies_info['Director'] = director
 
         for writers in info[3].find_all('a'):
@@ -100,3 +101,39 @@ def movie_info(movie):
 #to add all of the information from the movie_info function into a list of dictionaries
 for all_movies in movies_search:
     all_data.append(movie_info(all_movies))
+    
+listdirectors = []
+listtitles = []
+listwriters =[]
+listrelease=[]
+listrevenue=[]
+       
+for info in all_data1:
+    try:
+        listdirectors.append(info['Director'])
+        listtitles.append(info['Movie Title'])
+        listwriters.append(info['Writers'])
+        listrevenue.append(info['Box Office Info'])
+        listrelease.append(info['Release Date'])
+    except:
+        pass
+
+df = pd.DataFrame(columns=['Title','Director', 'Writers', 'Release Date', 'Revenue'])
+
+df['Director'] = listdirectors
+df['Title'] = listtitles
+df['Wrters'] = listwriters
+df['Release Date'] = listrelease
+df['Revenue'] = listrevenue
+
+
+amy_df = pd.read_csv('imdb_RT.csv')
+
+df3 = pd.merge(df, amy_df, left_on ='Title', right_on='Movie Title', how='left', suffixes=('', '_y'))
+
+movies_df = df3.drop_duplicates(['Title'],keep='first')
+
+del_col_list = ['Year', 'movie_ID', 'movie_title', 'Actors', 'Unnamed: 0', 'year', 'directorID', 'director_name']
+
+movies_df = movies_df.drop(del_col_list, axis=1)
+movies_df
