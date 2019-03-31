@@ -3,7 +3,7 @@
 
 # Project Overview
 
-In this project, we pulled data from The Movie Database (TMDB) via API, Rotten Tomatoes via webscraping with BeautifulSoup, and IMDB using their public datasets to understand recent movie trends based on the popularity, genres, and directors of the top movies in the 21st century. Data collected was cleaned and placed into Pandas dataframes before being stored in CSV files throughout the project. The overall data collected was also stored in a relational database. Data visualizations were displayed using Matplotlib, a Python data visualization library.
+In this project, we pulled data from The Movie Database (TMDB) via API, Rotten Tomatoes via webscraping with BeautifulSoup, and <a href='https://www.imdb.com/interfaces/'>IMDB</a> using their public datasets to understand recent movie trends based on the popularity, genres, and directors of the top movies in the 21st century. Data collected was cleaned and placed into Pandas dataframes before being stored in CSV files throughout the project. The overall data collected was also stored in a relational database. Data visualizations were displayed using Matplotlib, a Python data visualization library.
 
 <u><b> Key Questions for This Project </b></u>
 <br>
@@ -30,7 +30,7 @@ The final dataframe was saved as a csv file and in a SQL database.
 # Relationship Between Movie Release Timing and Popularity
 
 <p align="center">
-  <img src="release_timings.png" title="Monthly Movie Popularity 2000-2018">
+  <img src="./images/release_timings.png" title="Monthly Movie Popularity 2000-2018">
 </p>
 
 The above bar graph compared the mean popularity of top movies of each month when top movies were released. It showed that movies were more popular in the summer and winter months specifically June, July, November, and December. This is probably because there are more vacations and free time around the summer and winter months.
@@ -39,7 +39,7 @@ The above bar graph compared the mean popularity of top movies of each month whe
 # Yearly Review of Ratings Between Movie Critics and Consumers
 
 <p align="center">
-  <img src="ratings_comp.png" title="Yearly Review of Ratings Between Critics and Consumers 2000-2018">
+  <img src="./images/ratings_comp.png" title="Yearly Review of Ratings Between Critics and Consumers 2000-2018">
 </p>
 
 The graph above compared the ratings of top movies from movie critics, represented by the Rotten Tomatoes data, to ratings provided by the general populace, represented by the IMDB data. We wanted to analyze how much, if any, critics and consumers differed in their opinions about movies, which may affect the predictions of movie trends. This showed that critics and consumers on many occasions differed in their ratings about the top movies and therefore, it would be important to weigh everyone's thoughts in estimating what would be a successful movie.
@@ -48,7 +48,7 @@ The graph above compared the ratings of top movies from movie critics, represent
 # Top Genres Trending in the 21st Century
 
 <p align="center">
-  <img src="genres_count.png" title="Top Genres of the 21st Century">
+  <img src="./images/genres_count.png" title="Top Genres of the 21st Century">
 </p>
 
 In looking at what kinds of movies are trending in the recent century, we wanted to take a snapshot of the genres which make up the top movies in this century. The above bar graph looked at the number of top movies from each genre. It showed that most of the top movies were from the Drama category followed by Comedy movies. However, there were many movies that were unclassifed and therefore, it is important to keep in mind that the conclusion was based on only the data available. More information may change the trend and conclusion.
@@ -57,7 +57,7 @@ In looking at what kinds of movies are trending in the recent century, we wanted
 # Top Directors Trending in the 21st Century
 
 <p align="center">
-  <img src="directors_counts.png" title="Top 10 Directors of the 21st Century">
+  <img src="./images/directors_counts.png" title="Top 10 Directors of the 21st Century">
 </p>
 
 Finally, we wanted to look at who are the directors who created the top films of this century. The above bar graph showed that Steven Spielberg and Clint Eastwood were tied as the directors of the most top movies of this century. Therefore, future movies from either directors would potentially be good options to consider for investment as they are more most likely to succeed based on the trend seen in the past couple of years. 
