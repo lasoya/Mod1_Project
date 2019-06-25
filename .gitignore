@@ -119,3 +119,6 @@ Thumbs.db
 
 # config file
 config.py
+
+# vscode
+.vscode
